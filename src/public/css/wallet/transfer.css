@@ -1,0 +1,67 @@
+.transfer-wrapp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.money-span {
+    padding: 10px;
+}
+.transfer-option {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px;
+}
+
+.note {
+    color: red;
+}
+.list-transfer {
+    border-radius: 5px;
+    padding: 4px 2px;
+}
+.transfer-amount {
+    border-radius: 5px;
+    padding: 4px 2px;
+    outline: none;
+    text-align: right;
+    border: 1px solid black;
+}
+#submit-transfer {
+    width: 100%;
+    margin-top: 10px;
+    padding: 4px;
+    background: rgb(32, 147, 255);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.transfer-table {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    border: 1px solid black;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 5px; */
+}
+
+.transfer-session {
+    width: 33.333333%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    padding: 10px 0;
+}
+.session-title {
+    padding-bottom: 4px;
+}
+.session-money {
+}

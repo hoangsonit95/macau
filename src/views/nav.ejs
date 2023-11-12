@@ -1,0 +1,106 @@
+<style>
+  .block-click {
+    pointer-events: none;
+  }
+
+  .icon-tixian:before {
+    content: "\e64c";
+  }
+</style>
+<div data-v-432e6ed0="" class="nav c-pr" id="nav_checkUrl" data-url="">
+  <div class="van-hairline--top-bottom van-tabbar van-tabbar--fixed" style="padding: 5px">
+    <div class="van-tabbar-item" data-url="/home" onclick="location.href='/home'">
+      <div class="van-tabbar-item__icon">
+        <!---->
+      </div>
+      <div class="van-tabbar-item__text">
+        <div>
+          <!-- <img src="/images/venetian/icon-navbar-home.png"> -->
+          <i id="icon-button-home" class="iconfont icon-tixian" style="font-size: 22px; color: #fff"></i>
+        </div>
+        <span class="name" id="text-button-home" style="padding-top: 5px;">Trang chủ</span>
+      </div>
+    </div>
+
+    <div class="van-tabbar-item" data-url="/wallet" onclick="location.href='/list-game'">
+      <div class="van-tabbar-item__icon"></div>
+      <div class="van-tabbar-item__text">
+        <div>
+          <!-- <img src="/images/venetian/icon-navbar-xoso.png" /> -->
+          <i id="icon-button-games" class="iconfont icon-goucaidating"
+            style="font-size: 22px; color: #fff; margin-top: -0.5rem"></i>
+        </div>
+        <span class="name" id="text-button-games" style="padding-top: 5px;">Phòng xổ số</span>
+      </div>
+    </div>
+    <div class="van-tabbar-item" data-url="/mian" onclick="location.href='/mian'">
+      <div class="van-tabbar-item__icon"></div>
+      <div class="van-tabbar-item__text">
+        <div style="height: 20px">
+          <!-- <img src="/images/venetian/icon-navbar-me.png" /> -->
+          <i class="iconfont icon-wode" style="font-size: 22px" id="icon-button-you"></i>
+        </div>
+        <span class="name" style="margin-top: 5px" id="text-button-you">Tôi</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  let url = window.location.pathname;
+  //handle active nav
+  if (url === "/home") {
+    document.getElementById("icon-button-home").style.color = "#ffff05";
+    document.getElementById("text-button-home").style.color = "#ffff05";
+  } else if (url === "/list-game") {
+    document.getElementById("icon-button-games").style.color = "#ffff05";
+    document.getElementById("text-button-games").style.color = "#ffff05";
+  } else {
+    document.getElementById("icon-button-you").style.color = "#ffff05";
+    document.getElementById("text-button-you").style.color = "#ffff05";
+  }
+
+  //end
+  let check = document.querySelector(`.van-tabbar-item[data-url='${url}']`);
+  document.querySelector("#nav_checkUrl").setAttribute("data-url", url);
+  if (check) check.classList.add("block-click");
+  let pathname = document
+    .querySelector("#nav_checkUrl")
+    .getAttribute("data-url");
+  let listNavs = document.querySelector(
+    "#nav_checkUrl .van-hairline--top-bottom"
+  ).children;
+  let select = 0;
+  switch (pathname) {
+    case "/home":
+      select = 0;
+      break;
+    case "/checkIn":
+      select = 1;
+      break;
+    case "/promotion":
+      select = 2;
+      break;
+    case "/list-game":
+      select = 3;
+      break;
+    case "/mian":
+      select = 4;
+      break;
+    default:
+      break;
+  }
+
+  let arr = [
+    { id: 1, src: "/images/venetian/icon-navbar-home-active.png" },
+    { id: 2, src: "/images/venetian/icon-navbar-xoso-active.png" },
+    { id: 3, src: "/images/invite.webp" },
+    { id: 4, src: "/images/venetian/icon-navbar-me-active.png" },
+    { id: 5, src: "/images/me2.png" },
+  ];
+
+  listNavs[select].children[1].children[0].children[0].setAttribute(
+    "src",
+    arr[select].src
+  ); // img
+  listNavs[select].children[1].children[1].classList.add("action"); // name active
+</script>

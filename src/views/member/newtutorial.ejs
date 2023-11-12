@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html translate="no" data-dpr="1" style="font-size: 48.16px">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport" />
+  <title>Macau</title>
+  <link href="/css/wallet/main.css" rel="stylesheet" />
+  <link href="/css/icon.css" rel="stylesheet" />
+  <link href="/css/user.css" rel="stylesheet" />
+  <link href="/css/wallet/chunk_2-1.css" rel="stylesheet" />
+  <link href="/css/wallet/chunk_2-2.css" rel="stylesheet" />
+  <link href="/css/wallet/chunk_2-3.css" rel="stylesheet" />
+  <!-- <link rel="shortcut icon" href="/images/17-49-48-625.png" type="image/x-icon" /> -->
+</head>
+
+<body style="font-size: 12px; background-color: #efeef4">
+  <div class="biaoti" style="margin-top: 15px; z-index: 1">
+    <h1>
+      <div style="color: #fff; font-size: 18px; margin-left: -0.7rem">
+        Lãi và lỗ hôm nay
+      </div>
+    </h1>
+  </div>
+  <div class="AppHeader">
+    <div class="AppHeader-inner">
+      <a href="javascript:history.back(-1);" class="" style="color: #fff">
+        <i class="iconfont icon-arrow-left"></i>
+      </a>
+      <div class="AppHeader-actions">
+        <span class="my-icon">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-weidenglutouxiang"></use>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="winloss_top">
+    <p class="winloss_money_text">Số tiền có lợi nhuận</p>
+    <p class="winloss_money">-250USD</p>
+    <p class="winloss_activity">
+      <i class="iconfont icon-gantanhao1"></i>công thức
+    </p>
+  </div>
+  <div class="winloss_bottom">
+    <ul class="am-avg-sm-3">
+      <li style="height: 150px">
+        <span class="money am-block">250.00</span>
+        <p class="money_text am-block" style="margin-top: 10px">Cá cược</p>
+      </li>
+      <li style="height: 150px">
+        <span class="money am-block">0.00</span>
+        <p class="money_text am-block" style="margin-top: 10px">
+          Số tiền chiến thắng
+        </p>
+      </li>
+      <li style="height: 150px">
+        <span class="money am-block">0.00</span>
+        <p class="money_text am-block" style="margin-top: 10px">
+          Quà tặng sự kiện
+        </p>
+      </li>
+      <li style="height: 150px">
+        <span class="money am-block">0.00</span>
+        <p class="money_text am-block" style="margin-top: 10px">
+          Số tiền trả lại
+        </p>
+      </li>
+      <!--<li>
+				<span class="money am-block">0.00</span>
+				<em class="money_text am-block">娱乐城返点</em>
+			</li>
+			<li>
+				<span class="money am-block">0.00</span>
+				<em class="money_text am-block">娱乐城反水</em>
+			</li>-->
+      <li style="height: 150px">
+        <span class="money am-block">0.00</span>
+        <p class="money_text am-block" style="margin-top: 10px">
+          Lượng sạc lại
+        </p>
+      </li>
+      <li style="height: 150px">
+        <span class="money am-block">0.00</span>
+        <p class="money_text am-block" style="margin-top: 10px">
+          Số tiền rút
+        </p>
+      </li>
+    </ul>
+  </div>
+  <script type="text/javascript">
+    $(".my-icon").click(function () {
+      $(".AppSidebar").css("right", "0");
+      $(".AppMask").fadeIn(300);
+    });
+    $(".huiyuan").click(function () {
+      $(".AppSidebar").css("right", "0");
+      $(".AppMask").fadeIn(300);
+    });
+    $(".AppMask,.close-icon").click(function () {
+      $(".AppSidebar").css("right", "-240px");
+      $(".AppMask").fadeOut(300);
+    });
+      // $(".refresh_money").click(function () {
+      //   $.ajax({
+      //     url: "/Account.refreshmoney.do",
+      //     type: "POST",
+      //     success: function (data) {
+      //       $(".smallmoney").html(data);
+      //     },
+      //   });
+      // });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="/js/client.js"></script>
+  <script>
+    $(window).on("load", function () {
+      $(".Loading").fadeOut(100);
+    });
+  </script>
+</body>
+
+</html>

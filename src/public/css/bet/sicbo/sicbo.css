@@ -1,0 +1,177 @@
+.navbar[data-v-106b99c8] {
+  width: 100%;
+  max-width: 10.66667rem;
+  top: 0;
+  background: #0b3327;
+  height: 1.33333rem;
+  line-height: 1.33333rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  color: #fff;
+  z-index: 999;
+}
+
+.navbar.action[data-v-106b99c8] {
+  background: url(../img/header.496d8f96.png);
+  background-size: cover;
+}
+
+.navbar-title[data-v-106b99c8] {
+  font-size: 0.42667rem;
+  flex: 1;
+  text-align: center;
+}
+
+.navbar .bank[data-v-106b99c8] {
+  width: 0.69333rem;
+  height: 0.69333rem;
+  border-radius: 0.69333rem;
+}
+
+.navbar-left[data-v-106b99c8],
+.navbar-right[data-v-106b99c8] {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  line-height: 1.33333rem;
+  padding: 0 0.26667rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-left[data-v-106b99c8] {
+  left: 0;
+}
+
+.navbar-right[data-v-106b99c8] {
+  right: 0;
+}
+
+.navbar-icon[data-v-106b99c8] {
+  height: 1.2rem;
+}
+
+.navbar-back[data-v-106b99c8] {
+  width: 0.69333rem;
+  height: 0.69333rem;
+}
+
+.Loading[data-v-7692a079] {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 99999;
+}
+
+.game .navbarR img {
+  width: 0.66667rem;
+  height: 0.66667rem;
+}
+
+.body-sicbo {
+  color: white;
+  height: 700px;
+  background: #0e7154;
+  padding: 0.5rem 0.4rem 0rem 0.4rem;
+}
+
+.body-sicbo .top-body__sicbo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.body-sicbo .top-body__sicbo .number-sicbo,
+.body-sicbo .top-body__sicbo .time-sicbo {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.body-sicbo .top-body__sicbo .number-sicbo {
+  border-right: 1px solid whitesmoke;
+}
+
+.body-sicbo .top-body__sicbo .number-sicbo img {
+  width: 28px;
+  margin-top: 10px;
+}
+
+.body-sicbo .top-body__sicbo .time-sicbo .time {
+  height: 28px;
+  color: #ffcf81;
+  margin-top: 10px;
+}
+
+.body-sicbo .top-body__sicbo .number-sicbo .number-sicbo__result,
+.body-sicbo .top-body__sicbo .time-sicbo .number-sicbo__next {
+  text-align: center;
+  line-height: 24px;
+}
+
+.body-sicbo .top-body__sicbo .number-sicbo .number-sicbo__result span,
+.body-sicbo .top-body__sicbo .time-sicbo span {
+  color: #ffcf81;
+}
+
+.body-sicbo .text-body__sicbo {
+  font-size: 12px;
+  padding: 0 20px;
+  line-height: 20px;
+  word-break: break-all;
+  color: #caebda;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.body-sicbo .bet-sicbo ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.body-sicbo .bet-sicbo ul li {
+  width: 22%;
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+  border: 1px solid hsla(0, 0%, 100%, 0.3);
+  color: #caebda;
+  border-radius: 5px;
+  padding: 10px 0;
+  overflow: hidden;
+  margin: 5px;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.body-sicbo .bet-sicbo ul li .item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.body-sicbo .bet-sicbo ul li .item .tile {
+  font-size: 14px;
+}
+
+.body-sicbo .total-money {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.game-list[data-v-a9660e98] {
+  background: #0e7154;
+  margin-top: 0px !important;
+  padding-top: 30px;
+}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html translate="no" data-dpr="1" style="font-size: 48.16px">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport" />
+    <title>Macau</title>
+    <link href="/css/wallet/main.css" rel="stylesheet" />
+    <link href="/css/wallet/chunk_2-1.css" rel="stylesheet" />
+    <link href="/css/wallet/chunk_2-2.css" rel="stylesheet" />
+    <link href="/css/wallet/chunk_2-3.css" rel="stylesheet" />
+    <link href="/css/wallet/transfer.css" rel="stylesheet" />
+    <!-- <link rel="shortcut icon" href="/images/17-49-48-625.png" type="image/x-icon" /> -->
+</head>
+
+<body style="font-size: 12px">
+    <div id="app">
+        <div data-v-3966082f="" class="mian">
+            <div data-v-106b99c8="" data-v-3966082f="" class="navbar">
+                <div data-v-106b99c8="" class="navbar-left" onclick="location.href='/wallet'">
+                    <div data-v-106b99c8="" class="bank c-row c-row-middle-center">
+                        <img data-v-106b99c8="" src="/images/back.c3244ab0.png" class="navbar-back" />
+                    </div>
+                </div>
+                <div data-v-106b99c8="" class="navbar-title">
+                    Chuyển quỹ
+                </div>
+                <div data-v-106b99c8="" class="navbar-right"></div>
+            </div>
+            <div data-v-3966082f="" class="box">
+                <div data-v-3966082f="" class="list m-b-20">
+                    <div data-v-3966082f="" role="feed" class="van-list">
+                        <div class="transfer-wrapp">
+                            <span class="money-span"></span>
+                            <div class="transfer-option">
+                                <label for="">Từ: </label>
+                                <select name="" id="transfer-from" class="list-transfer"></select>
+                            </div>
+                            <div class="transfer-option">
+                                <label for="">Đến: </label>
+                                <select name="" id="transfer-to" class="list-transfer"></select>
+                            </div>
+                            <div class="transfer-option">
+                                <label for="amount">Số tiền: </label>
+                                <input id="amount" type="number" class="transfer-amount" />
+                            </div>
+                            <span class="note">*Lưu ý: Số tiền giao dịch tối thiểu
+                                10.000đ</span>
+                            <button id="submit-transfer">Chuyển</button>
+                        </div>
+                        <div class="transfer-wrapp">
+                            <div class="transfer-table"></div>
+                        </div>
+                        <div class="van-list__placeholder"></div>
+                    </div>
+                </div>
+            </div>
+            <div data-v-7692a079="" data-v-3966082f="" class="Loading c-row c-row-middle-center" style="display: none">
+                <div data-v-7692a079="" class="van-loading van-loading--circular">
+                    <span data-v-7692a079="" class="van-loading__spinner van-loading__spinner--circular"
+                        style="color: rgb(242, 65, 59)">
+                        <svg data-v-7692a079="" viewBox="25 25 50 50" class="van-loading__circular">
+                            <circle data-v-7692a079="" cx="50" cy="50" r="20" fill="none"></circle>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/client.js"></script>
+    <script>
+        function formateT(params) {
+            let result = params < 10 ? '0' + params : params;
+            return result;
+        }
+
+        function formatMoney(money) {
+            return new Intl.NumberFormat('vi-vn', {
+                style: 'currency',
+                currency: 'VND',
+            }).format(money);
+        }
+
+        function alertMess(text, sic) {
+            $('body').append(
+                `
+                <div data-v-1dcba851="" class="msg">
+                    <div data-v-1dcba851="" class="msg-content v-enter-active v-enter-to" style=""> ${text} </div>
+                </div>
+                `
+            );
+            setTimeout(() => {
+                $('.msg .msg-content').removeClass(
+                    'v-enter-active v-enter-to'
+                );
+                $('.msg .msg-content').addClass(
+                    'v-leave-active v-leave-to'
+                );
+                setTimeout(() => {
+                    $('.msg').remove();
+                }, 100);
+                // sic.removeClass('block-click');
+            }, 1000);
+        }
+
+        $('.Loading').fadeIn(0);
+        function timerJoin(params = '') {
+            let date = '';
+            if (params) {
+                date = new Date(Number(params));
+            } else {
+                date = new Date();
+            }
+            let years = formateT(date.getFullYear());
+            let months = formateT(date.getMonth() + 1);
+            let days = formateT(date.getDate());
+
+            let hours = formateT(date.getHours());
+            let minutes = formateT(date.getMinutes());
+            let seconds = formateT(date.getSeconds());
+            return (
+                years +
+                '-' +
+                months +
+                '-' +
+                days +
+                ' ' +
+                hours +
+                '-' +
+                minutes +
+                '-' +
+                seconds
+            );
+        }
+
+        function renderListTransfer(data, type) {
+            let html = `<option value="${type}">Tài khoản người dùng</option>`;
+            for (let item of data) {
+                html += `
+                    <option value=${item.providercode}>${item.providercode} - ${item.name}</option>`;
+            }
+            console.log(type);
+            if (type == 0) {
+                $('#transfer-from').html('');
+                $('#transfer-from').append(html);
+            } else {
+                $('#transfer-to').html('');
+                $('#transfer-to').append(html);
+            }
+        }
+
+        function renderBalance(data) {
+            $('.transfer-table').html('');
+            let html = '';
+            for (let item of data) {
+                html += `<div class="transfer-session">
+                                <span class="session-title">${item.providercode
+                    }</span>
+                                        <span class="session-money">${formatMoney(
+                        item.balance
+                    )}</span>
+                                    </div>`;
+            }
+            $('.transfer-table').append(html);
+        }
+
+        $('#submit-transfer').click(function () {
+            let transferFrom = $('#transfer-from').val();
+            let transferTo = $('#transfer-to').val();
+            let amount = $('#amount').val();
+            if (!amount || (transferFrom === '0' && transferTo === '1'))
+                return alertMess('Vui lòng nhập đầy đủ thông tin');
+            if (amount < 10000) return alertMess('Số tiền không hợp lệ');
+            let type, providercode;
+            if (transferFrom === '0') {
+                type = 0;
+                providercode = transferTo;
+            }
+            if (transferTo === '1') {
+                providercode = transferFrom;
+                type = 1;
+            }
+            $('.Loading').fadeIn(0);
+            $.ajax({
+                type: 'POST',
+                data: {
+                    type,
+                    providercode,
+                    amount,
+                },
+                url: '/api/webapi/transfer',
+                dataType: 'json',
+                success: function (res) {
+                    let { status, msg } = res.result;
+                    init();
+                    alertMess(msg);
+                },
+            });
+        });
+
+        function init() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/webapi/listapi/baracat',
+                dataType: 'json',
+                success: function (res) {
+                    let { status, data, money } = res;
+                    if (status) {
+                        renderListTransfer(data, 0);
+                        renderListTransfer(data, 1);
+                        renderBalance(data);
+                        $('#amount').val(0);
+                        $('.money-span').text(
+                            `Ví tiền: ${formatMoney(money)}`
+                        );
+                        $('.Loading').fadeOut(0);
+                    }
+                },
+            });
+        }
+
+        init();
+    </script>
+</body>
+
+</html>

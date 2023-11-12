@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thông tin chi tiết member</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <style>
+        #f1,#f2,#f3,#f4, #total_mem {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <%- include('nav') %>
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Thông tin</h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+
+                            <!-- Profile Image -->
+                            <div class="card card-primary card-outline">
+                                <div class="card-body box-profile">
+                                    <div class="text-center">
+                                        <img class="profile-user-img img-fluid img-circle" src="/images/facebook.jpg" alt="User profile picture">
+                                    </div>
+
+                                    <h3 class="profile-username text-center">Member...</h3>
+
+                                    <p class="text-muted text-center" id="id_user">ID: 0</p>
+
+                                    <ul class="list-group list-group-unbordered mb-3">
+                                        <li class="list-group-item">
+                                            <b>Số dư</b> <a class="float-right" id="money">0</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Tổng nạp</b> <a class="float-right" id="total_money">0</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Tổng rút</b> <a class="float-right" id="total_withdraw">0</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Tổng hoa hồng</b> <a class="float-right" id="roses_all">0</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Hoa hồng hôm nay</b> <a class="float-right" id="roses_today">0</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>F1</b> <a class="float-right filter-f" id="f1">0</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>F2</b> <a class="float-right filter-f" id="f2">0</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>F3</b> <a class="float-right filter-f" id="f3">0</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>F4</b> <a class="float-right filter-f" id="f4">0</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Tổng mời</b> <a class="float-right" id="total_mem">0</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>IP</b> <a class="float-right" id="ip">157.296.591.22</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Telegram</b> <a class="float-right" id="telegram" href="Loading...">Loading...</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Người mời</b> <a class="float-right" id="invite">Loading...</a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>DAILY</b> <a class="float-right" id="daily">Loading...</a>
+                                        </li>
+                                    </ul>
+
+                                    <a href="#" class="btn btn-primary btn-block">
+                                        <b style="text-transform: uppercase;" id="level">ADMIN</b>
+                                    </a>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+
+                            <!-- About Me Box -->
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Thông tin ngân hàng</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    
+                                    <strong>
+                                        <i class="fas fa-pencil-alt mr-1"></i> 
+                                        <span>Tên chủ thẻ</span>
+                                    </strong>
+
+                                    <p class="text-muted"> 
+                                        <input class="tag tag-danger" id="name">Chưa có ngân hàng nào được thêm vào</input>
+                                    </p>
+                                    <hr>
+                                    <strong>
+                                        <i class="far fa-file-alt mr-1"></i>
+                                        <span>Số tài khoản</span>
+                                    </strong>
+
+                                    <input class="text-muted" id="stk">Chưa có ngân hàng nào được thêm vào</input>
+                                    
+                                    <hr>
+
+                                    <strong>
+                                        <i class="fas fa-map-marker-alt mr-1"></i>
+                                        <span>Tên ngân hàng</span>
+                                    </strong>
+
+                                    <input class="tag tag-danger" id="namebank">Chưa có ngân hàng nào được thêm vào</input>
+
+                                    <hr>
+                                    <strong>
+                                        <i class="fas fa-book mr-1"></i>
+                                        <span>Thời gian thêm</span>
+                                    </strong>
+                                    <p class="text-muted" id="timeAddBank">Chưa có ngân hàng nào được thêm vào</p>
+
+                                    <button class="btn btn-primary btn-block" id="editbank">
+                                        <b style="text-transform: uppercase;">EDIT</b>
+                                    </button>
+                                    <input id="phone-user" style="display: none;"></input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9" style="overflow: auto;">
+                            <%- include('table/listCapduoi.ejs') %>
+                            <!-- Table Recharge -->
+                            <%- include('table/listRecharge.ejs') %>
+                            <!-- END TABLE -->
+                            <!-- Table Withdraw -->
+                            <%- include('table/listWithdraw.ejs') %>
+                            <!-- END TABLE -->
+                            <!-- Table Withdraw -->
+                            <%- include('table/listRedenvelope.ejs') %>
+                            <!-- END TABLE -->
+                            <!-- Table Withdraw -->
+                            <%- include('table/listBet.ejs') %>
+                            <!-- END TABLE -->
+                        </div> 
+                    </div>
+                </div>
+            </section> 
+        </div>
+    </div>
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/dist/js/adminlte.min.js"></script>
+    <script src="/js/admin/admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script>
+        function formateT(params) {
+            let result = (params < 10) ? "0" + params : params;
+            return result;
+        }
+
+        function timerJoin(params = '') {
+            let date = '';
+            if (params) {
+            date = new Date(Number(params));
+            } else {
+            date = Date.now();
+            date = new Date(Number(date));
+            }
+            let years = formateT(date.getFullYear());
+            let months = formateT(date.getMonth() + 1);
+            let days = formateT(date.getDate());
+            let weeks = formateT(date.getDay());
+        
+            let hours = formateT(date.getHours());
+            let minutes = formateT(date.getMinutes());
+            let seconds = formateT(date.getSeconds());
+            // return years + '-' + months + '-' + days + ' ' + hours + '-' + minutes + '-' + seconds;
+            return years + " - " + months + " - " + days;
+        }
+    </script>
+    <script>
+        let url = window.location.pathname;
+        let phones = url.split('/');
+        let phone = phones[phones.length - 1];
+        $.ajax({
+            type: "POST",
+            url: "/api/webapi/admin/member/info",
+            data: {
+                phone: phone,
+            },
+            dataType: "json",
+            success: function (response) {
+                if(response.status === false) return false;
+                let user = response.datas[0];
+                // user
+                $('.profile-username').text(user.name_user);
+                $('#telegram').text(response.telegram.telegram);
+                $('#telegram').attr('href', response.telegram.telegram);
+                $('#id_user').text("ID: " + user.id_user);
+                $('#money').text(user.money + ".0");
+                $('#roses_all').text(user.roses_f + user.roses_f1 + '.0');
+                $('#roses_today').text(user.roses_today + '.0');
+                $('#invite').text(response.ng_moi.phone);
+                $('#daily').text(response.daily);
+
+                $('#f1').text(response.f1 + " thành viên");
+                $('#f2').text(response.f2 + " thành viên");
+                $('#f3').text(response.f3 + " thành viên");
+                $('#f4').text(response.f4 + " thành viên");
+                $('#total_mem').text(response.f1 + response.f2 + response.f3 + response.f4);
+                $('#ip').text(user.ip_address);
+                $('#level').text((user.level == 1) ? 'ADMIN' : (user.level == 2) ? "CTV" : "USER");
+
+                $('#total_money').text((response.total_r[0].total) ? response.total_r[0].total + '.0' : '0.0');
+                $('#total_withdraw').text((response.total_w[0].total) ? response.total_w[0].total + '.0' : '0.0');
+
+                // bank
+                if (response.bank_user[0]) {
+                    $('#name').val(response.bank_user[0].name_user);
+                    $('#namebank').val(response.bank_user[0].name_bank);
+                    $('#stk').val(response.bank_user[0].stk);
+                    $('#location').text(response.bank_user[0].tinh + " - " + response.bank_user[0].tp);
+                    $('#timeAddBank').text(timerJoin(response.bank_user[0].time));
+                    $('#phone-user').val(response.bank_user[0].phone);
+                }
+            }
+        });
+    </script>
+
+    <!--Withdraw-->
+    <script>
+        $('#editbank').click(function (e) {
+            e.preventDefault();
+            let userbank = $('#name').val();
+            let stk = $('#stk').val();
+            let phone = $('#phone-user').val();
+            let namebank = $('#namebank').val();
+            if(userbank == "" || stk == "" || namebank == ""){
+                Swal.fire(
+                    'Không được để trống!',
+                    '',
+                    'error'
+                );
+            }else{
+                $.ajax({
+                type: "POST",
+                url: "/admin/manager/editbank",
+                data: {
+                    phone: phone,
+                    userbank: userbank,
+                    namebank: namebank,
+                    stk: stk,
+                },
+                dataType: "json",
+                success: function (response) {
+                    Swal.fire(
+                    `${response.message}`,
+                    ``,
+                    'success'
+                );
+                },
+                });
+
+            }
+
+        });
+        const RenderWithdraw = (datas) => {
+            if (datas.length == 0) {
+                $('#list-withdraw').html(`
+                    <tr class="text-center">
+                    <td colspan="7">không có dữ liệu...</td>
+                    </tr>
+                `);
+                return;
+            }
+            let html = '';
+            datas.map((data) => {
+                html += 
+                `
+                <tr class="text-center" style="">
+                    <td style="color: #e74c3c;font-weight: 600;min-width: 210px">${data.id_order}</td>
+                    <td><b style="color: #3498db">${formatMoney(data.money)}</b></td>
+                    <td style="min-width: 210px;"><b>${data.name_bank}</b></td>
+                    <td class="project-state"><span class="badge badge-${(data.status == '1' ? 'success' : 'danger')}">${(data.status == '1' ? 'success' : 'closed')}</span></td>
+                    <td style="min-width: 210px;"><b>${data.today}</b></td>
+                </tr>
+                `;
+            });
+            $("#list-withdraw").html(html);
+        }
+
+        var pageno = 0;
+        var limit = 15;
+        var page = 1;
+        $.ajax({
+        type: "POST",
+        url: "/admin/member/listWithdraw/<%=phone%>",
+        data: {
+            typeid: "1",
+            pageno: pageno,
+            limit: limit,
+            language: "vi",
+        },
+        dataType: "json",
+        success: function (response) {
+            $('#text-withdraw').text(page + ' / ' + response.page_total);
+            if (response.status === true) return RenderWithdraw(response.datas);
+        },
+        });
+
+        $('#nextWithdraw').click(function (e) {
+        pageno += limit;
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/admin/member/listWithdraw/<%=phone%>",
+            data: {
+            typeid: "1",
+            pageno: pageno,
+            limit: limit,
+            language: "vi",
+            },
+            dataType: "json",
+            success: function (response) {
+            if(response.datas.length == 0) {
+                $('#nextRecharge').addClass('block-click');
+                return pageno -= limit
+            };
+            $('#text-withdraw').text(++page + ' / ' + response.page_total);
+            if (response.status === true) return RenderWithdraw(response.datas);
+            }
+        });
+        });
+        
+        $('#previousWithdraw').click(function (e) { 
+        e.preventDefault();
+        $('#nextWithdraw').removeClass('block-click');
+        pageno -= limit;
+        if(pageno < 0) return pageno = 0;
+        $.ajax({
+            type: "POST",
+            url: "/admin/member/listWithdraw/<%=phone%>",
+            data: {
+            typeid: "1",
+            pageno: pageno,
+            limit: limit,
+            language: "vi",
+            },
+            dataType: "json",
+            success: function (response) {
+            $('#text-withdraw').text(--page + ' / ' + response.page_total);
+            if (response.status === true) return RenderWithdraw(response.datas);
+            }
+        });
+        });
+    </script>
+    <!--Withdraw-->
+
+    <!--Recharge-->
+    <script>
+        const RenderRecharge = (datas) => {
+            if (datas.length == 0) {
+                $('#list-recharge').html(`
+                    <tr class="text-center">
+                    <td colspan="7">không có dữ liệu...</td>
+                    </tr>
+                `);
+                return;
+            }
+            let html = '';
+            datas.map((data) => {
+                html += 
+                `
+                <tr class="text-center" style="">
+                    <td style="color: #e74c3c;font-weight: 600;min-width: 210px">${data.transaction_id}</td>
+                    <td><b style="color: #3498db">${formatMoney(data.money)}</b></td>
+                    <td style="min-width: 210px;"><b>${(data.type == "bank") ? "BANK" : "MOMO"}</b></td>
+                    <td class="project-state"><span class="badge badge-${(data.status == '1' ? 'success' : 'warning')}">${(data.status == '1' ? 'success' : 'closed')}</span></td>
+                    <td style="min-width: 210px;"><b>${data.today}</b></td>
+                </tr>
+                `;
+            });
+            $("#list-recharge").html(html);
+        }
+
+        var pageno1 = 0;
+        var limit1 = 15;
+        var page1 = 1;
+        $.ajax({
+        type: "POST",
+        url: "/admin/member/listRecharge/<%=phone%>",
+        data: {
+            typeid: "1",
+            pageno: pageno1,
+            limit: limit1,
+            language: "vi",
+        },
+        dataType: "json",
+        success: function (response) {
+            $('#text-recharge').text(page1 + ' / ' + response.page_total);
+            if (response.status === true) return RenderRecharge(response.datas);
+        },
+        });
+
+        $('#nextRecharge').click(function (e) {
+        pageno1 += limit1;
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/admin/member/listRecharge/<%=phone%>",
+            data: {
+            typeid: "1",
+            pageno: pageno1,
+            limit: limit1,
+            language: "vi",
+            },
+            dataType: "json",
+            success: function (response) {
+            if(response.datas.length == 0) {
+                $('#nextRecharge').addClass('block-click');
+                return pageno1 -= limit1
+            };
+            $('#text-recharge').text(++page1 + ' / ' + response.page_total);
+            if (response.status === true) return RenderRecharge(response.datas);
+            }
+        });
+        });
+        
+        $('#previousRecharge').click(function (e) { 
+        e.preventDefault();
+        $('#nextRecharge').removeClass('block-click');
+        pageno1 -= limit1;
+        if(pageno1 < 0) return pageno1 = 0;
+        $.ajax({
+            type: "POST",
+            url: "/admin/member/listRecharge/<%=phone%>",
+            data: {
+            typeid: "1",
+            pageno: pageno1,
+            limit: limit1,
+            language: "vi",
+            },
+            dataType: "json",
+            success: function (response) {
+            $('#text-recharge').text(--page1 + ' / ' + response.page_total);
+            if (response.status === true) return RenderRecharge(response.datas);
+            }
+        });
+        });
+    </script>
+    <!--Recharge-->
+
+    <!--Cap duoi-->
+
+    <script>
+        const RenderCapduoi = (datas) => {
+            if (datas.length == 0) {
+                $('#list-Capduoi').html(`
+                    <tr class="text-center">
+                    <td colspan="7">không có dữ liệu...</td>
+                    </tr>
+                `);
+                return;
+            }
+            let html = '';
+            datas.map((data) => {
+                html += 
+                `
+                <tr class="text-center" style="">
+                    <td style="color: #e74c3c;font-weight: 600;min-width: 210px">${data.phone}</td>
+                    <td><b style="color: #3498db">${formatMoney(data.money)}</b></td>
+                    <td><b>${formatMoney(data.total_money)}</b></td>
+                    <td><b>${formatMoney(data.total_recharge || 0)}</b></td>
+                    <td><b>${formatMoney(data.total_withdraw)}</b></td>
+                    <td class="project-state"><span class="badge badge-${(data.status == '1' ? 'success' : 'warning')}">${(data.status == '1' ? 'Hoạt Động' : 'Bị Cấm')}</span></td>
+                    <td style="min-width: 210px;"><b>${toTime(data.time)}</b></td>
+                </tr>
+                `;
+            });
+            $("#list-Capduoi").html(html);
+        }
+
+        var pageno1Capduoi = 0;
+        var limit1Capduoi = 15;
+        var page1Capduoi = 1;
+        
+        var dataVipT;
+        $.ajax({
+        type: "POST",
+        url: "/admin/member/listCapduoi/<%=phone%>",
+        data: {
+            typeid: "1",
+            pageno: pageno1Capduoi,
+            limit: limit1Capduoi,
+            language: "vi",
+        },
+        dataType: "json",
+        success: function (response) {
+            $('#text-Capduoi').text(page1Capduoi + ' / ' + Math.ceil(response.datas.length/limit1Capduoi));
+            if (response.status === true){
+                dataVipT = response.datas;
+                
+                let datanext = dataVipT.slice(pageno1Capduoi, page1Capduoi*limit1Capduoi);
+                return RenderCapduoi(datanext);
+            }
+        },
+        });
+
+        
+        $('.filter-f').click(function () {
+            pageno1Capduoi = 0;
+            limit1Capduoi = 15;
+            page1Capduoi = 1;
+            let f = $(this).attr('id')
+            $.ajax({
+            type: "POST",
+            url: "/admin/member/listCapduoi/<%=phone%>/" + f,
+            data: {
+                typeid: "1",
+                pageno: pageno1Capduoi,
+                limit: limit1Capduoi,
+                language: "vi",
+            },
+            dataType: "json",
+            success: function (response) {
+                $('#text-Capduoi').text(page1Capduoi + ' / ' + Math.ceil(response.datas.length/limit1Capduoi));
+                if (response.status === true){
+                    dataVipT = response.datas;
+                    
+                    let datanext = dataVipT.slice(pageno1Capduoi, page1Capduoi*limit1Capduoi);
+                    return RenderCapduoi(datanext);
+                }
+            },
+            });
+        })
+
+        $('#total_mem').click(function () {
+            pageno1Capduoi = 0;
+            limit1Capduoi = 15;
+            page1Capduoi = 1;
+            $.ajax({
+        type: "POST",
+        url: "/admin/member/listCapduoi/<%=phone%>",
+        data: {
+            typeid: "1",
+            pageno: pageno1Capduoi,
+            limit: limit1Capduoi,
+            language: "vi",
+        },
+        dataType: "json",
+        success: function (response) {
+            $('#text-Capduoi').text(page1Capduoi + ' / ' + Math.ceil(response.datas.length/limit1Capduoi));
+            if (response.status === true){
+                dataVipT = response.datas;
+                
+                let datanext = dataVipT.slice(pageno1Capduoi, page1Capduoi*limit1Capduoi);
+                return RenderCapduoi(datanext);
+            }
+        },
+        })})
+
+
+        $('#nextCapduoi').click(function (e) {
+        pageno1Capduoi += limit1Capduoi;
+        page1Capduoi++;
+        e.preventDefault();
+        
+        let datanext = dataVipT.slice(pageno1Capduoi, page1Capduoi*limit1Capduoi)
+            if(datanext.length == 0) {
+                $('#nextCapduoi').addClass('block-click');
+                page1Capduoi--;
+                pageno1Capduoi -= limit1Capduoi
+                return
+            };
+            $('#text-Capduoi').text(page1Capduoi + ' / ' + Math.ceil(dataVipT.length/limit1Capduoi));
+            RenderCapduoi(datanext);
+        });
+        
+        $('#previousCapduoi').click(function (e) { 
+        e.preventDefault();
+        $('#nextCapduoi').removeClass('block-click');
+        pageno1Capduoi -= limit1Capduoi;
+        page1Capduoi--;
+        if(page1Capduoi < 0) return page1Capduoi = 0;
+        let datapre = dataVipT.slice(pageno1Capduoi, page1Capduoi*limit1Capduoi);
+        if(datapre.length == 0) {
+                $('#previousCapduoi').addClass('block-click');
+                page1Capduoi++;
+                pageno1Capduoi += limit1Capduoi;
+                return;
+            };
+        $('#text-Capduoi').text(page1Capduoi + ' / ' + Math.ceil(dataVipT.length/limit1Capduoi));
+        RenderCapduoi(datapre);
+        });
+
+
+    </script>
+
+    <!--end cap duoi-->
+
+    <!--Redenvelope-->
+    <script>
+        const RenderRedenvelopes = (datas) => {
+            if (datas.length == 0) {
+                $('#list-redenvelope').html(`
+                    <tr class="text-center">
+                    <td colspan="7">không có dữ liệu...</td>
+                    </tr>
+                `);
+                return;
+            }
+            let html = '';
+            datas.map((data) => {
+                html += 
+                ` 
+                <tr class="text-center" style="">
+                    <td style="color: #e74c3c;font-weight: 600;min-width: 210px">${data.phone}</td>
+                    <td><b style="color: #3498db">${formatMoney(data.money)}</b></td>
+                    <td style="min-width: 210px;"><b>${data.id_redenvelops}</b></td>
+                    <td class="project-state"><span class="badge badge-success">success</span></td>
+                    <td style="min-width: 210px;"><b>${timerJoin(data.time)}</b></td>
+                </tr>
+                `;
+            });
+            $("#list-redenvelope").html(html);
+        }
+
+        var pageno2 = 0;
+        var limit2 = 15;
+        var page2 = 1;
+        $.ajax({
+        type: "POST",
+        url: "/admin/member/redenvelope/<%=phone%>",
+        data: {
+            typeid: "1",
+            pageno: pageno2,
+            limit: limit2,
+            language: "vi",
+        },
+        dataType: "json",
+        success: function (response) {
+            $('#text-redenvelope').text(page2 + ' / ' + response.page_total);
+            let total = 0;
+            let amount = 0;
+            for (let i = 0; i < response.datas.length; i++) {
+                total += response.datas[i].money;
+                amount += 1;
+            }
+            $('#totlaide').text(total + ' đ ' + " / " + amount + ' Lixi');
+            if (response.status === true) return RenderRedenvelopes(response.datas);
+        },
+        });
+
+        $('#nextRedenvelope').click(function (e) {
+        pageno2 += limit2;
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/admin/member/redenvelope/<%=phone%>",
+            data: {
+            typeid: "1",
+            pageno: pageno2,
+            limit: limit2,
+            language: "vi",
+            },
+            dataType: "json",
+            success: function (response) {
+            if(response.datas.length == 0) {
+                $('#nextRedenvelope').addClass('block-click');
+                return pageno2 -= limit2
+            };
+            $('#text-redenvelope').text(++page2 + ' / ' + response.page_total);
+            if (response.status === true) return RenderRedenvelopes(response.datas);
+            }
+        });
+        });
+        
+        $('#previousRedenvelope').click(function (e) { 
+        e.preventDefault();
+        $('#nextRedenvelope').removeClass('block-click');
+        pageno2 -= limit2;
+        if(pageno2 < 0) return pageno2 = 0;
+        $.ajax({
+            type: "POST",
+            url: "/admin/member/redenvelope/<%=phone%>",
+            data: {
+            typeid: "1",
+            pageno: pageno2,
+            limit: limit2,
+            language: "vi",
+            },
+            dataType: "json",
+            success: function (response) {
+            $('#text-redenvelope').text(--page2 + ' / ' + response.page_total);
+            if (response.status === true) return RenderRedenvelopes(response.datas);
+            }
+        });
+        });
+    </script>
+    <!--Redenvelope-->
+
+    <!-- BET-->
+    <script>
+        var toTime = function(timex) {
+            var time = parseInt(timex);
+            var date = new Date(time);
+            var options = {
+                    year: 'numeric', month: 'numeric', day: 'numeric',
+                };
+
+             return date.toLocaleDateString('vi', options) + ' ' + date.toLocaleTimeString('vi');
+            
+        }
+        const RenderBet = (datas) => {
+            if (datas.length == 0) {
+                $('#list-bet').html(`
+                    <tr class="text-center">
+                    <td colspan="7">không có dữ liệu...</td>
+                    </tr>
+                `);
+                return;
+            }
+            let html = '';
+            datas.map((data) => {
+                html += 
+                `
+                <tr class="text-center" style="">
+                    <td style="color: #e74c3c;font-weight: 600;min-width: 210px">${data.stage}</td>
+                    <td><b style="color: #3498db">${formatMoney(data.money)}</b></td>
+                    <td><b style="color: #3498db">${(data.status == 1) ? "+" : "-"} ${(data.status == 1) ? formatMoney(data.get) : formatMoney(data.money)}</b></td>
+                    <td style="min-width: 70px;"><b>${data.bet === 'n' ? 'Nhỏ' : data.bet === 'l' ? 'Lớn' : data.bet === 'x' ? 'Xanh' : data.bet === 't' ? 'Tím' : data.bet === 'd' ? 'Vàng' : data.bet}</b></td>
+                    <td style="min-width: 70px;"><b>${data.game}</b></td>
+                    <td class="project-state"><span class="badge badge-${(data.status == '1' ? 'success' : 'danger')}">${(data.status == '1' ? 'win' : 'loss')}</span></td>
+                    <td style="min-width: 210px;"><b>${toTime(data.time)}</b></td>
+                </tr>
+                `;
+            });
+            $("#list-bet").html(html);
+        }
+        const RenderBetk3 = (datas) => {
+            
+            if (datas.length == 0) {
+                $('#list-bet-k3').html(`
+                    <tr class="text-center">
+                    <td colspan="7">không có dữ liệu...</td>
+                    </tr>
+                `);
+                return;
+            }
+            let html = '';
+            datas.map((data) => {
+                html += 
+                `
+                <tr class="text-center" style="">
+                    <td style="color: #e74c3c;font-weight: 600;min-width: 210px">${data.stage}</td>
+                    <td><b style="color: #3498db">${formatMoney(data.money)}</b></td>
+                    <td><b style="color: #3498db">${(data.status == 1) ? "+" : "-"} ${(data.status == 1) ? formatMoney(data.get) : formatMoney(data.money)}</b></td>
+                    <td style="min-width: 70px;"><b>${data.bet === 's' ? 'Nhỏ' : data.bet === 'b' ? 'Lớn' : data.bet === 'l' ? 'lẻ' : data.bet === 'c' ? 'Chẵn' : data.bet}</b></td>
+                    <td style="min-width: 70px;"><b>K3 ${data.game}p</b></td>
+                    <td class="project-state"><span class="badge badge-${(data.status == '1' ? 'success' : 'danger')}">${(data.status == '1' ? 'win' : 'loss')}</span></td>
+                    <td style="min-width: 210px;"><b>${toTime(data.time)}</b></td>
+                </tr>
+                `;
+            });
+            $("#list-bet-k3").html(html);
+        }
+
+        const RenderBetk5 = (datas) => {
+           
+            if (datas.length == 0) {
+                $('#list-bet-k5').html(`
+                    <tr class="text-center">
+                    <td colspan="7">không có dữ liệu...</td>
+                    </tr>
+                `);
+                return;
+            }
+            let html = '';
+            datas.map((data) => {
+                html += 
+                `
+                <tr class="text-center" style="">
+                    <td style="color: #e74c3c;font-weight: 600;min-width: 210px">${data.stage}</td>
+                    <td><b style="color: #3498db">${formatMoney(data.money)}</b></td>
+                    <td><b style="color: #3498db">${(data.get > 0) ? "+" : "-"} ${(data.get > 0) ? formatMoney(data.get) : formatMoney(data.money)}</b></td>
+                    <td style="min-width: 70px;"><b>${data.bet === 's' ? 'Nhỏ' : data.bet === 'b' ? 'Lớn' : data.bet === 'l' ? 'lẻ' : data.bet === 'c' ? 'Chẵn' : data.bet}</b></td>
+                    <td style="min-width: 70px;"><b>K5D ${data.game}p</b></td>
+                    <td class="project-state"><span class="badge badge-${(data.get > 0 ? 'success' : 'danger')}">${(data.get == 0 ? 'loss' : 'win')}</span></td>
+                    <td style="min-width: 210px;"><b>${toTime(data.time)}</b></td>
+                </tr>
+                `;
+            });
+            $("#list-bet-k5").html(html);
+        }
+
+        const RenderBetBaccarat = (datas) => {
+           
+           if (datas.length == 0) {
+               $('#list-bet-k5').html(`
+                   <tr class="text-center">
+                   <td colspan="7">không có dữ liệu...</td>
+                   </tr>
+               `);
+               return;
+           }
+           let html = '';
+           datas.map((data) => {
+               html += 
+               `
+               <tr class="text-center" style="">
+                   <td style="font-weight: 600;min-width: 210px">${data.product}</td>
+                   <td><b style="color: #e74c3c">${formatMoney(data.bet)}</b></td>
+                   <td><b style="color: #3498db">${formatMoney(data.payout)}</b></td>
+                   <td><b style="color: #3498db">${formatMoney(data.turnover)}</b></td>
+                   <td style="min-width: 210px;"><b>${data.ref_no}</b></td>
+                   <td style="min-width: 210px;"><b>${data.start_time}</b></td>
+               </tr>
+               `;
+           });
+           $("#list-bet-baccarat").html(html);
+       }
+
+        //wingobet
+        var pageno3 = 0;
+        var limit3 = 10;
+        var page3 = 1;
+        $.ajax({
+        type: "POST",
+        url: "/admin/member/bet/<%=phone%>",
+        data: {
+            typeid: "1",
+            pageno: pageno3,
+            limit: limit3,
+            language: "vi",
+        },
+        dataType: "json",
+        success: function (response) {
+            $('#text-bet').text(page3 + ' / ' + response.page_total);
+            if (response.status === true) return RenderBet(response.datas);
+        },
+        });
+
+        //k3bet
+        var pageno3_k3 = 0;
+        var limit3_k3 = 10;
+        var page3_k3 = 1;
+        $.ajax({
+        type: "POST",
+        url: "/admin/member/betk3/<%=phone%>",
+        data: {
+            typeid: "1",
+            pageno: pageno3_k3,
+            limit: limit3_k3,
+            language: "vi",
+        },
+        dataType: "json",
+        success: function (response) {
+            
+            $('#text-bet-k3').text(page3_k3 + ' / ' + response.page_total);
+            if (response.status === true) return RenderBetk3(response.datas);
+        },
+        });
+        //k5bet
+        var pageno3_k5 = 0;
+        var limit3_k5 = 10;
+        var page3_k5 = 1;
+        $.ajax({
+        type: "POST",
+        url: "/admin/member/betk5/<%=phone%>",
+        data: {
+            typeid: "1",
+            pageno: pageno3_k5,
+            limit: limit3_k5,
+            language: "vi",
+        },
+        dataType: "json",
+        success: function (response) {
+            
+            $('#text-bet-k5').text(page3_k5 + ' / ' + response.page_total);
+            if (response.status === true) return RenderBetk5(response.datas);
+        },
+        });
+
+        //baccarat
+        var pageno3_baccarat = 0;
+        var limit3_baccarat = 10;
+        var page3_baccarat = 1;
+        $.ajax({
+        type: "POST",
+        url: "/admin/member/betbaccarat/<%=phone%>",
+        data: {
+            typeid: "1",
+            pageno: pageno3_baccarat,
+            limit: limit3_baccarat,
+            language: "vi",
+        },
+        dataType: "json",
+        success: function (response) {
+            
+            $('#text-bet-baccarat').text(page3_baccarat + ' / ' + response.page_total);
+            if (response.status === true) return RenderBetBaccarat(response.datas);
+        },
+        });
+
+        $('#nextBet').click(function (e) {
+        pageno3 += limit3;
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/admin/member/bet/<%=phone%>",
+            data: {
+            typeid: "1",
+            pageno: pageno3,
+            limit: limit3,
+            language: "vi",
+            },
+            dataType: "json",
+            success: function (response) {
+            if(response.datas.length == 0) {
+                $('#nextBet').addClass('block-click');
+                return pageno3 -= limit3
+            };
+            $('#text-bet').text(++page3 + ' / ' + response.page_total);
+            if (response.status === true) return RenderBet(response.datas);
+            }
+        });
+        });
+
+        $('#nextBetk3').click(function (e) {
+        pageno3_k3 += limit3_k3;
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/admin/member/betk3/<%=phone%>",
+            data: {
+            typeid: "1",
+            pageno: pageno3_k3,
+            limit: limit3_k3,
+            language: "vi",
+            },
+            dataType: "json",
+            success: function (response) {
+            if(response.datas.length == 0) {
+                $('#nextBetk3').addClass('block-click');
+                return pageno3_k3 -= limit3_k3
+            };
+            $('#text-bet-k3').text(++page3_k3 + ' / ' + response.page_total);
+            if (response.status === true) return RenderBetk3(response.datas);
+            }
+        });
+        });
+
+        $('#nextBetk5').click(function (e) {
+        pageno3_k5 += limit3_k5;
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/admin/member/betk5/<%=phone%>",
+            data: {
+            typeid: "1",
+            pageno: pageno3_k5,
+            limit: limit3_k5,
+            language: "vi",
+            },
+            dataType: "json",
+            success: function (response) {
+            if(response.datas.length == 0) {
+                $('#nextBetk5').addClass('block-click');
+                return pageno3_k5 -= limit3_k5
+            };
+            $('#text-bet-k5').text(++page3_k5 + ' / ' + response.page_total);
+            if (response.status === true) return RenderBetk5(response.datas);
+            }
+        });
+        });
+
+        $('#nextBetBaccarat').click(function (e) {
+        pageno3_baccarat += limit3_baccarat;
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "/admin/member/betbaccarat/<%=phone%>",
+            data: {
+            typeid: "1",
+            pageno: pageno3_baccarat,
+            limit: limit3_baccarat,
+            language: "vi",
+            },
+            dataType: "json",
+            success: function (response) {
+            if(response.datas.length == 0) {
+                $('#nextBetBaccarat').addClass('block-click');
+                return pageno3_baccarat -= limit3_baccarat
+            };
+            $('#text-bet-baccarat').text(++page3_baccarat + ' / ' + response.page_total);
+            if (response.status === true) return RenderBetBaccarat(response.datas);
+            }
+        });
+        });
+        
+        $('#previousBet').click(function (e) { 
+        e.preventDefault();
+        $('#nextBet').removeClass('block-click');
+        pageno3 -= limit3;
+        if(pageno3 < 0) return pageno3 = 0;
+        $.ajax({
+            type: "POST",
+            url: "/admin/member/bet/<%=phone%>",
+            data: {
+            typeid: "1",
+            pageno: pageno3,
+            limit: limit3,
+            language: "vi",
+            },
+            dataType: "json",
+            success: function (response) {
+            $('#text-bet').text(--page3 + ' / ' + response.page_total);
+            if (response.status === true) return RenderBet(response.datas);
+            }
+        });
+        });
+
+        $('#previousBetk3').click(function (e) { 
+        e.preventDefault();
+        $('#nextBetk3').removeClass('block-click');
+        pageno3_k3 -= limit3_k3;
+        if(pageno3_k3 < 0) return pageno3_k3 = 0;
+        $.ajax({
+            type: "POST",
+            url: "/admin/member/betk3/<%=phone%>",
+            data: {
+            typeid: "1",
+            pageno: pageno3_k3,
+            limit: limit3_k3,
+            language: "vi",
+            },
+            dataType: "json",
+            success: function (response) {
+            $('#text-bet-k3').text(--page3_k3 + ' / ' + response.page_total);
+            if (response.status === true) return RenderBetk3(response.datas);
+            }
+        });
+        });
+
+        $('#previousBetk5').click(function (e) { 
+        e.preventDefault();
+        $('#nextBetk5').removeClass('block-click');
+        pageno3_k5 -= limit3_k5;
+        if(pageno3_k5 < 0) return pageno3_k5 = 0;
+        $.ajax({
+            type: "POST",
+            url: "/admin/member/betk5/<%=phone%>",
+            data: {
+            typeid: "1",
+            pageno: pageno3_k5,
+            limit: limit3_k5,
+            language: "vi",
+            },
+            dataType: "json",
+            success: function (response) {
+            $('#text-bet-k5').text(--page3_k5 + ' / ' + response.page_total);
+            if (response.status === true) return RenderBetk5(response.datas);
+            }
+        });
+        });
+
+        $('#previousBetBaccarat').click(function (e) { 
+        e.preventDefault();
+        $('#nextBetBaccarat').removeClass('block-click');
+        pageno3_baccarat -= limit3_baccarat;
+        if(pageno3_baccarat < 0) return pageno3_baccarat = 0;
+        $.ajax({
+            type: "POST",
+            url: "/admin/member/betbaccarat/<%=phone%>",
+            data: {
+            typeid: "1",
+            pageno: pageno3_baccarat,
+            limit: limit3_baccarat,
+            language: "vi",
+            },
+            dataType: "json",
+            success: function (response) {
+            $('#text-bet-baccarat').text(--page3_baccarat + ' / ' + response.page_total);
+            if (response.status === true) return RenderBetBaccarat(response.datas);
+            }
+        });
+        });
+    </script>
+    <!-- BET-->
+</body>
+
+</html>
